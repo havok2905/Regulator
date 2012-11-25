@@ -83,4 +83,40 @@ use PDO;
 			$STH = self::$DBH->prepare("UPDATE $table SET $fields WHERE $selector=?");
 			$STH->execute($data);
 		}
+
+		/** Returns an array of your selections
+		* @author Christopher McLean
+		* @version 1.0 
+		* @param    $table, $fields, $selector, $data
+		* @return   $response in the form of an array
+		*/
+		public static function select($table, $fields, $data=null, $selector=null)
+		{
+			$fieldstring = implode(", ", $fields);
+
+			if($selector == null || $selector == null)
+			{
+				$STH = self::$DBH-> query("SELECT $fieldstring from $table");
+			}
+			else
+			{
+				$STH = self::$DBH-> query("SELECT $fieldstring from $table WHERE $selector=?");
+			}
+
+			$STH -> setFetchMode(PDO::FETCH_OBJ);
+
+			$response = array();
+			$count = 0;
+
+			while($row = $STH->fetch())
+			{
+				foreach ($fields as $key => $value) 
+				{
+					$response[$count][$value] = $row->$value;
+				}
+				$count++;
+			}
+
+			return $response;
+		}
 	}
