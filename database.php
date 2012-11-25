@@ -6,10 +6,10 @@ use PDO;
 	class Database
 	{
 	
-		public static $host = "localhost";
-		public static $database = "exchange";
-		public static $username = "havok2905";
-		public static $password = "ee5ahcqh";
+		public static $host = "";
+		public static $database = "";
+		public static $username = "";
+		public static $password = "";
 		public static $DBH;
 		
 		/** Connects to the database using PDO
