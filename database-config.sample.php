@@ -11,7 +11,7 @@ namespace Exchange;
 
 	class DBConfig
 	{
-		public static $host = "localhost";
+		public static $host = "";
 		public static $database = "";
 		public static $username = "";
 		public static $password = "";		
